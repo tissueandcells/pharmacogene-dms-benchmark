@@ -37,10 +37,6 @@ data/external/*.gz
 *.ckpt
 checkpoints/
 
-# Paper artifacts - not tracked until publication
-results/figures/
-results/supplementary/
-results/logs/
 
 # Temporary files
 *.tmp
