@@ -15,43 +15,14 @@ Three architectural extensions fail to improve over this baseline: structural fe
 
 We interpret these convergent results as evidence that ESM-2 embeddings approach the information ceiling achievable at current pharmacogene DMS scale, and that further progress requires richer supervision signals rather than architectural refinement.
 
-
-Repository structure
-
-configs/          Hyperparameter and feature configuration files
 data/raw/         DMS source data (see Data sources below)
-data/processed/   Cached ESM-2 embeddings, parsed variant tables
-data/structures/  AlphaFold contact graphs (.npz)
-data/external/    AlphaMissense precomputed scores
-notebooks/        Exploratory analysis notebooks
-results/tables/   Cross-validation results (CSV/JSON)
+data/processed/   Wild-type sequences and parsed variant tables
+data/structures/  AlphaFold PDB and Calpha contact graph (.npz) files
 scripts/          Numbered pipeline scripts (see Pipeline below)
-src/              Core library modules (featurization, models, CV)
-tests/            Unit tests for parsers and featurization
-
-
-Pipeline
-
-Scripts are numbered to indicate execution order. All scripts read configuration from configs/ and write outputs to results/.
-
-01_fetch_mavedb.py          Download DMS datasets from MaveDB API
-02_parse_variants.py        Parse HGVS notation, validate against UniProt wild-type
-03_esm2_embed.py            Extract ESM-2 per-residue embeddings for each protein
-04_fetch_alphafold.py       Download AlphaFold v6 structures
-05_build_contact_graphs.py  Build Calpha contact graphs at 6/8/10 angstrom thresholds
-10_featurize_f1_f5.py       Generate F1 to F5 feature representations
-16_train_cv.py              Position-based 5-fold cross-validation for F1 to F5 baselines
-17_zero_shot_esm1v.py       Compute ESM1v ensemble log-likelihood scores
-18_alphamissense.py         Merge AlphaMissense scores with variant set
-20_f6_structural.py         F6a to F6d structural feature augmentation experiments
-24_multitask_mlp.py         F7 multi-task training on paired assays
-25_gnn_v3.py                F8-MLP / F8-GCN / F9-GAT graph neural network experiments
-26_gnn_significance.py      Paired bootstrap and Wilcoxon signed-rank significance tests
-
 
 Environment
 
-Tested on Ubuntu 22.04 with an NVIDIA RTX 4060 Laptop GPU (8 GB VRAM). CPU-only execution is supported but considerably slower for ESM-2 embedding extraction and GNN training.
+CPU-only execution is supported but considerably slower for ESM-2 embedding extraction and GNN training.
 
     conda create -n pharmepi python=3.11
     conda activate pharmepi
