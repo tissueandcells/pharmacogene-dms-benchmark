@@ -10,7 +10,7 @@ AlphaMissense scores diverge from the assayed biochemistry in both directions. O
 
 A simple ESM-2 plus two-layer MLP baseline (F2) achieves test Pearson r of 0.54 to 0.72 across five datasets, matching or marginally exceeding zero-shot ESM1v ensembles and pre-trained AlphaMissense.
 
-Three architectural extensions do not improve over this baseline: structural feature augmentation (0 of 20 combinations significant), multi-task joint learning (0 of 4), and graph neural network modeling of residue contacts (0 of 10 comparisons improve F2; 10 of 10 GNN comparisons actively underperform F2).
+Three architectural extensions do not improve over this baseline: structural feature augmentation (0 of 20 combinations significant), multi-task joint learning (0 of 4 improved, 2 of 4 significantly degraded), and graph neural network modeling of residue contacts (0 of 10 comparisons improve F2; 10 of 10 GNN comparisons actively underperform F2).
 
 Within the model classes evaluated here and at currently available pharmacogene DMS scale, the tested architectural extensions did not improve upon a simple sequence-based baseline, and the limiting factor appears to lie less in the architecture than in the biochemical resolution of the training signal. This is not an exhaustive survey of contemporary variant effect prediction. Mutant-sequence embeddings, delta embeddings, likelihood-ratio features from more recent protein language models, lightweight fine-tuning, unsupervised generative models such as EVE, non-neural supervised methods, ligand-aware architectures, and rotation-equivariant geometric networks such as GVP-GNN, EquiformerV2, and GearNet were all outside its scope, and the negative results should not be read as evidence of a general performance limit.
 
